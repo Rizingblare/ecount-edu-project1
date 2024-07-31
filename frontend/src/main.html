@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./main.css" />
+    <title>Javascript 1주차 과제</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>이카운트 가계부</h1>
+      <div class="content">
+        <!-- 날짜 입력, 월별 집계여부, 조회버튼 -->
+        <div class="top">
+          <div class="period">
+            <input class="startYear" placeholder="YYYY" />. <input class="startMonth" placeholder="MM" />.
+            <input class="startDay" placeholder="DD" />
+            ~
+            <input class="endYear" placeholder="YYYY" />. <input class="endMonth" placeholder="MM" />.
+            <input class="endDay" placeholder="DD" />
+
+            <label class="monthly">
+              <span>월별집계</span>
+              <input type="checkbox" />
+            </label>
+          </div>
+          <button class="search">조회</button>
+        </div>
+
+        <!-- 신규 등록, 결과 테이블 -->
+        <div class="bottom">
+          <div class="left">
+            <h3>신규 등록</h3>
+            <div class="newDate">
+              <input class="startYear" placeholder="YYYY" /> <input class="startMonth" placeholder="MM" />
+              <input class="startDay" placeholder="DD" />
+            </div>
+            <input class="price" placeholder="금액" />
+            <input class="description" placeholder="내용" />
+            <button class="enroll">+</button>
+
+            <div class="transactionType">
+              <label for="deposit">
+                <input type="radio" id="deposit" name="transactionType" value="deposit">
+                  수입
+                </label>  
+                <label for="expense">
+                    <input type="radio" id="expense" name="transactionType" value="expense">
+                    지출
+                </label>
+            </div>
+          </div>
+          <div class="right"></div>
+        </div>
+      </div>
+    </div>
+    <script  type="module" src="./main.js"></script>
+  </body>
+</html>
