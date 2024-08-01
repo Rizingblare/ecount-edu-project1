@@ -20,5 +20,6 @@ export const getTransactionData = async () => {
     );
 
     const jsonDate = await response.json();
+    console.log(jsonDate);
   });
 };
