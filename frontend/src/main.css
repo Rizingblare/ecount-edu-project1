@@ -1,112 +1,164 @@
 * {
-    box-sizing: border-box;
-  }
-  html,
-  body {
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    background-color: #d3d3d3;
-  }
-  
-  .container {
-    width: 1000px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    gap: 50px;
-  }
-  
-  .content {
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-    gap: 40px;
-    max-height: 450px;
-  }
-  
-  .top {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 50px;
-    width: 100%;
-  }
-  
-  .period {
-    display: flex;
-    align-items: center;
-  }
-  
-  .newDate {
-    display: flex;
-  }
-  
-  .period input,
-  .newDate input {
-    border: none;
-    width: 50px;
-    text-align: center;
-    font-size: 16px;
-    outline: none;
-  }
-  
-  input::placeholder {
-    transition: opacity 0.3s ease;
-  }
-  input:focus::placeholder {
-    opacity: 0;
-  }
-  
-  .transactionType {
-    display: flex;
-  }
-  .monthly {
-    display: flex;
-    align-items: center;
-  }
-  .monthly input {
-    width: 20px;
-  }
-  
-  .search {
-    height: 100%;
-  }
-  
-  .bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid black;
-  }
-  
-  .left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    position: relative;
-    border-right: 1px solid black;
-    padding: 40px 40px 60px 40px;
-  }
-  
-  .price,
-  .description {
-    height: 30px;
-  }
-  
-  .enroll {
-    position: absolute;
-    width: 30px;
-    border-radius: 50%;
-    height: 30px;
-    bottom: 10px;
-    right: 10px;
-    cursor: pointer;
-  }
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #d3d3d3;
+}
+
+.container {
+  width: 1000px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  height: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* gap: 50px; */
+}
+
+h2 {
+  width: 100%;
+  text-align: center;
+  line-height: 3.5rem;
+  background-color: rgb(207, 236, 255);
+  margin: 30px 0;
+  color: rgb(50, 50, 50);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* gap: 40px; */
+  max-height: 450px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.period {
+  display: grid;
+  grid-template-columns: 5fr 1fr 5fr 3fr;
+  align-items: center;
+}
+
+.period > span {
+  text-align: center;
+  font-weight: bold;
+}
+
+.period > div {
+  text-align: center;
+}
+
+.newDate {
+  display: flex;
+}
+
+.period input,
+.newDate input {
+  border: none;
+  width: 50px;
+  text-align: center;
+  font-size: 16px;
+  outline: none;
+}
+
+input::placeholder {
+  transition: opacity 0.3s ease;
+}
+input:focus::placeholder {
+  opacity: 0;
+}
+
+.transactionType {
+  display: flex;
+}
+.monthly {
+  display: flex;
+  align-items: right;
+  margin-left: 2rem;
+}
+.monthly input {
+  width: 20px;
+}
+
+.search {
+  /* height: 100%; */
+  padding: 0.4rem 1rem;
+  background-color: rgb(0, 123, 255);
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 2px;
+  transition: background-color 0.2s;
+}
+
+.search:hover {
+  cursor: pointer;
+  background-color: rgb(0, 108, 223);
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgb(200, 200, 200);
+  min-height: 560px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  border-right: 1px solid rgb(200, 200, 200);
+  padding: 20px 50px 60px 50px;
+  height: 100%;
+}
+
+.price,
+.description {
+  height: 30px;
+}
+
+.enroll {
+  position: absolute;
+  width: 30px;
+  border-radius: 50%;
+  height: 30px;
+  bottom: 30px;
+  right: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  background-color: white;
+  color: blue;
+  border: 3px solid blue;
+}
+
+.enroll:hover {
+  transform: scale(105%);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
