@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 입력 필드 선택
-  const startYear = document.querySelector(".Year");
-  const startMonth = document.querySelector(".Month");
-  const startDay = document.querySelector(".Day");
+  const newYear = document.querySelector(".newYear");
+  const newMonth = document.querySelector(".newMonth");
+  const newDay = document.querySelector(".newDay");
   const price = document.querySelector(".price");
   const description = document.querySelector(".description");
   const enrollButton = document.querySelector(".enroll");
@@ -18,9 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // 입력 필드 변경 시 formData 업데이트
-  startYear.addEventListener("input", updateDate);
-  startMonth.addEventListener("input", updateDate);
-  startDay.addEventListener("input", updateDate);
+  newYear.addEventListener("input", updateDate);
+  newMonth.addEventListener("input", updateDate);
+  newDay.addEventListener("input", updateDate);
   price.addEventListener("input", (e) => {
     formData.amount = parseInt(e.target.value, 10);
   });
@@ -36,10 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 날짜 업데이트 함수
   function updateDate() {
-    formData.date = `${startYear.value}-${startMonth.value.padStart(
+    formData.date = `${newYear.value}-${newMonth.value.padStart(
       2,
       "0"
-    )}-${startDay.value.padStart(2, "0")}`;
+    )}-${newDay.value.padStart(2, "0")}`;
   }
 
   // + 버튼 클릭 시
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // POST
     // 본인 ip로 변경하여 사용
-    fetch("http://172.29.12.151:5050/transactions", {
+    fetch("http://172.29.12.170:5050/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
