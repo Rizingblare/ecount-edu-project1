@@ -5,7 +5,7 @@ const PORT = 5050;
 const HOST = "172.29.12.170";
 
 // CONFIG
-const { Client } = require("pg");
+const { Client, types } = require("pg");
 
 // JSON 파싱 미들웨어
 app.use(express.json());
@@ -54,6 +54,79 @@ app.post("/transactions", async (req, res) => {
     const result = await client.query(query, values);
 
     res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error("Error inserting data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.get(`/transactions`, async (req, res) => {
+  // ?startDate={startDate}&endDate={endDate}
+
+  const startDate = req.query.startDate;
+  const endDate = req.query.endDate;
+
+  // console.log(startDate); //2024-04-21
+  // console.log(endDate);
+
+  try {
+    // dto
+    const result = {
+      success: true,
+      response: {
+        summarys: [],
+        transactions: [],
+      },
+    };
+
+    const query = `SELECT * FROM Transactions WHERE DATE BETWEEN '${startDate}' AND '${endDate}'`;
+    const queryResult = await client.query(query);
+
+    for (let obj of queryResult.rows) {
+      // const dateInfo = new Date(obj.date).toISOString().split("T")[0];
+      const dateInfo = new Date(obj.date).toLocaleString("kr");
+      const [year, month, day] = dateInfo.split(".").map(Number).slice(0, 11);
+      const summaryDataArr = result.response.summarys;
+
+      let addFlag = false;
+      for (let summaryData of summaryDataArr) {
+        if (summaryData.type === obj.type && summaryData.month === month) {
+          addFlag = true;
+          summaryData.amount += obj.amount;
+        }
+      }
+      if (!addFlag) {
+        summaryDataArr.push({
+          year,
+          month,
+          type: obj.type,
+          amount: obj.amount,
+        });
+      }
+
+      console.log(obj);
+      result.response.transactions.push({
+        year: year,
+        month: month,
+        day: day,
+        type: obj.type,
+        amount: obj.amount,
+        description: obj.description,
+      });
+    }
+
+    res.status(200).json(result);
+
+    // const startMonth = startDate.slice(0, 7); // 2024-04
+    // const endMonth = endDate.slice(0, 7); // 2024-06
+    // const queryForMonth = `
+    //   SELECT TO_CHAR(date, 'YYYY-MM') as date, SUM(amount) as total_price
+    //   FROM Transactions
+    //   WHERE date BETWEEN '${startDate}' AND '${endDate}'
+    //   GROUP BY TO_CHAR(date, 'YYYY-MM')
+    // `;
+    // const monthQueryResult = await client.query(queryForMonth);
+    // console.log(monthQueryResult.rows);
   } catch (error) {
     console.error("Error inserting data:", error);
     res.status(500).json({ error: "Internal Server Error" });
