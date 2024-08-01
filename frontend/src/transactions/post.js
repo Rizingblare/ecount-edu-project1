@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+export const postNewData = () => {
   // 입력 필드 선택
   const newYear = document.querySelector(".newYear");
   const newMonth = document.querySelector(".newMonth");
@@ -69,4 +69,4 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error:", error);
       });
   });
-});
+};
