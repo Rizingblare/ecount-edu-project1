@@ -7,7 +7,7 @@ const HOST = "172.29.12.151";
 // CONFIG
 const { Client } = require("pg");
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://172.29.12.151:3000");
+  res.header("Access-Control-Allow-Origin", "http://172.29.12.151:3000"); // 본인 ip로 변경하여 사용
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -18,6 +18,7 @@ app.use((req, res, next) => {
 // JSON 파싱 미들웨어
 app.use(express.json());
 
+// 본인 db 정보로 변경하여 사용
 const client = new Client({
   user: "postgres",
   host: "127.0.0.1", // TODO: 특정 IP주소 명시 옵션 설정

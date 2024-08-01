@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // POST
+    // 본인 ip로 변경하여 사용
     fetch("http://172.29.12.151:5050/transactions", {
       method: "POST",
       headers: {
