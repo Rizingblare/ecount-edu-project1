@@ -1,4 +1,3 @@
-// 프론트 - 백 DB데이터 통신 테스트 파일
 const express = require("express");
 const app = express();
 const PORT = 5050;
@@ -7,7 +6,7 @@ const HOST = "172.29.12.170";
 // CONFIG
 const { Client, types } = require("pg");
 
-// JSON 파싱 미들웨어
+// JSON 파싱 미들웨어 (프론트 요청 데이터를 api서버에 전달하기 위함)
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -22,9 +21,9 @@ app.use((req, res, next) => {
 const client = new Client({
   user: "postgres",
   host: "127.0.0.1", // TODO: 특정 IP주소 명시 옵션 설정
-  database: "project2",
-  password: "minh0518",
-  port: 5432,
+  database: "project2", // 개인 로컬 DB 적용
+  password: "minh0518", // 개인 로컬 DB 적용
+  port: 5432, // 개인 로컬 DB 적용
 });
 
 client.connect();
