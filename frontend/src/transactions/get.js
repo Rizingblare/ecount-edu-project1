@@ -29,7 +29,7 @@ export const getTransactionData = async () => {
       const newRow = document.createElement("div");
       newRow.className = "row";
 
-      // ³¯Â¥ µ¥ÀÌÅÍ p ¿ä¼Ò »ı¼º
+      // ë‚ ì§œ ë°ì´í„° p ìš”ì†Œ ìƒì„±
       const year = document.createElement("p");
       year.textContent = singleData.year;
       newRow.appendChild(year);
@@ -43,7 +43,7 @@ export const getTransactionData = async () => {
       newRow.appendChild(day);
 
       const type = document.createElement("p");
-      type.textContent = singleData.type === true ? "¼öÀÔ" : "ÁöÃâ";
+      type.textContent = singleData.type === true ? "ìˆ˜ì…" : "ì§€ì¶œ";
       newRow.appendChild(type);
 
       const amount = document.createElement("p");
@@ -54,7 +54,7 @@ export const getTransactionData = async () => {
       description.textContent = singleData.description;
       newRow.appendChild(description);
 
-      // »õ·Î¿î div ¿ä¼Ò¸¦ .right ³»ºÎ¿¡ Ãß°¡
+      // ìƒˆë¡œìš´ div ìš”ì†Œë¥¼ .right ë‚´ë¶€ì— ì¶”ê°€
       resultSection.appendChild(newRow);
     }
   });
