@@ -1,4 +1,4 @@
-export const postNewData = () => {
+export const registerTransaction = () => {
   // 입력 필드 선택
   const newYear = document.querySelector(".newYear");
   const newMonth = document.querySelector(".newMonth");
@@ -81,7 +81,7 @@ export const postNewData = () => {
 
     // POST
     // 본인 ip로 변경하여 사용
-    fetch("http://172.29.12.151:5050/transactions", {
+    fetch("http://172.29.12.149:5050/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -93,6 +93,14 @@ export const postNewData = () => {
       })
       .then((data) => {
         console.log("Success:", data);
+
+        newYear.value = null
+        newMonth.value = null
+        newDay.value = null
+        price.value = null
+        description.value = null
+
+        alert("등록 완료되었습니다.")
       })
       .catch((error) => {
         console.error("Error:", error);

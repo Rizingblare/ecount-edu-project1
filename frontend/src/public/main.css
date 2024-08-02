@@ -117,7 +117,7 @@ input:focus::placeholder {
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid rgb(200, 200, 200);
-  min-height: 560px;
+  min-height: 520px;
 }
 
 .left {
