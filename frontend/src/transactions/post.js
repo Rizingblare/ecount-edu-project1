@@ -15,6 +15,7 @@ export const postNewData = () => {
     date: "",
     amount: 0,
     description: "",
+    type: true,
   };
 
   // 입력 필드 변경 시 formData 업데이트
@@ -24,7 +25,6 @@ export const postNewData = () => {
 
   // 날짜 업데이트 함수
   function updateDate() {
-    console.log(newYear.value, newMonth.value, newDay.value);
     if (newYear.value && newYear.value < 1) {
       newYear.value = null;
       alert("유효하지 않은 날짜 값입니다.");
@@ -81,14 +81,16 @@ export const postNewData = () => {
 
     // POST
     // 본인 ip로 변경하여 사용
-    fetch("http://172.29.12.170:5050/transactions", {
+    fetch("http://172.29.12.151:5050/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        response.json();
+      })
       .then((data) => {
         console.log("Success:", data);
       })

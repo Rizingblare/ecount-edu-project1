@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const PORT = 5050;
-const HOST = "172.29.12.170";
+const HOST = "172.29.12.151";
 
 // CONFIG
 const { Client, types } = require("pg");
@@ -10,7 +10,7 @@ const { Client, types } = require("pg");
 app.use(express.json());
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://172.29.12.170:3000");
+  res.header("Access-Control-Allow-Origin", "http://172.29.12.151:3000");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -21,8 +21,8 @@ app.use((req, res, next) => {
 const client = new Client({
   user: "postgres",
   host: "127.0.0.1", // TODO: 특정 IP주소 명시 옵션 설정
-  database: "project2", // 개인 로컬 DB 적용
-  password: "minh0518", // 개인 로컬 DB 적용
+  database: "project1", // 개인 로컬 DB 적용
+  password: "1234", // 개인 로컬 DB 적용
   port: 5432, // 개인 로컬 DB 적용
 });
 
@@ -78,7 +78,7 @@ app.get(`/transactions`, async (req, res) => {
       },
     };
 
-    const query = `SELECT * FROM Transactions WHERE DATE BETWEEN '${startDate}' AND '${endDate}'`;
+    const query = `SELECT * FROM Transactions WHERE DATE BETWEEN '${startDate}' AND '${endDate}' ORDER BY DATE`;
     const queryResult = await client.query(query);
 
     for (let obj of queryResult.rows) {
