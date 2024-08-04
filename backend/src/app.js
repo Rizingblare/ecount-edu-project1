@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const PORT = 5050;
-const HOST = "172.29.12.149";
+const HOST = "172.29.12.151";
 
 // CONFIG
 const { Client, types } = require("pg");
@@ -12,14 +12,14 @@ app.use(express.json());
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "POST");
-  res.header("Access-Control-Allow-Headers","Content-Type");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
 
 const client = new Client({
   user: "postgres",
   host: "127.0.0.1", // TODO: 특정 IP주소 명시 옵션 설정
-  database: "Project1", // 개인 로컬 DB 적용
+  database: "project1", // 개인 로컬 DB 적용
   password: "1234", // 개인 로컬 DB 적용
   port: 5432, // 개인 로컬 DB 적용
 });
@@ -40,7 +40,6 @@ app.get("/", (req, res) => {
 });
 
 app.get(`/transactions`, async (req, res) => {
-
   let startDate = req.query.startDate;
   let endDate = req.query.endDate;
 
@@ -54,12 +53,12 @@ app.get(`/transactions`, async (req, res) => {
       },
     };
 
+    let blankFlag = false;
+    if (startDate === "--" || endDate === "--") blankFlag = true;
 
-    let blankFlag=false
-    if(startDate==='--' || endDate==='--') blankFlag=true
-
-    
-    const query = blankFlag  ?`SELECT * FROM Transactions ORDER BY DATE` :`SELECT * FROM Transactions WHERE DATE BETWEEN '${startDate}' AND '${endDate}' ORDER BY DATE`;
+    const query = blankFlag
+      ? `SELECT * FROM Transactions ORDER BY DATE`
+      : `SELECT * FROM Transactions WHERE DATE BETWEEN '${startDate}' AND '${endDate}' ORDER BY DATE`;
     const queryResult = await client.query(query);
 
     for (let obj of queryResult.rows) {
@@ -95,7 +94,6 @@ app.get(`/transactions`, async (req, res) => {
     }
 
     res.status(200).json(result);
-
   } catch (error) {
     console.error("Error inserting data:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -119,8 +117,6 @@ app.post("/transactions", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-
 
 app.listen(PORT, HOST, () => {
   console.log(`백엔드 API 서버가 http://0.0.0.0:${PORT} 에서 실행 중입니다.`);
