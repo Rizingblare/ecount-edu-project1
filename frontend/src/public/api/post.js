@@ -81,7 +81,7 @@ export const registerTransaction = () => {
 
     // POST
     // 본인 ip로 변경하여 사용
-    fetch("http://172.29.12.149:5050/transactions", {
+    fetch(`${window.SERVER_URL}/transactions`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
