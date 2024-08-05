@@ -28,7 +28,8 @@ export const getTransactions = async () => {
     const endDate = [endYear, endMonth, endDay].join("-");
 
     const response = await fetch(
-      `http://172.29.12.151:5050/transactions?startDate=${startDate}&endDate=${endDate}`,
+      `${window.SERVER_URL}/transactions?startDate=${startDate}&endDate=${endDate}`,
+
       {
         method: "GET",
       }
