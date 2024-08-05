@@ -94,13 +94,13 @@ export const registerTransaction = () => {
       .then((data) => {
         console.log("Success:", data);
 
-        newYear.value = null
-        newMonth.value = null
-        newDay.value = null
-        price.value = null
-        description.value = null
+        newYear.value = null;
+        newMonth.value = null;
+        newDay.value = null;
+        price.value = null;
+        description.value = null;
 
-        alert("등록 완료되었습니다.")
+        alert("등록 완료되었습니다.");
       })
       .catch((error) => {
         console.error("Error:", error);
