@@ -1,5 +1,5 @@
 const express = require("express");
-const os = require('os');
+const os = require("os");
 
 // CONFIG
 const { Client, types } = require("pg");
@@ -9,7 +9,9 @@ const networkInterfaces = os.networkInterfaces();
 let serverIpAddress;
 
 for (const interfaceName in networkInterfaces) {
-  const addresses = networkInterfaces[interfaceName].filter(address => address.family === 'IPv4' && !address.internal);
+  const addresses = networkInterfaces[interfaceName].filter(
+    (address) => address.family === "IPv4" && !address.internal
+  );
   if (addresses.length > 0) {
     serverIpAddress = addresses[0].address;
     break;
@@ -18,9 +20,6 @@ for (const interfaceName in networkInterfaces) {
 const serverUrl = `http://${serverIpAddress}:5050`;
 const PORT = 5050;
 const HOST = serverIpAddress;
-
-
-
 
 // JSON 파싱 미들웨어 (프론트 요청 데이터를 api서버에 전달하기 위함)
 app.use(express.json());
@@ -33,7 +32,7 @@ app.use((req, res, next) => {
 });
 
 const client = new Client({
-  user: "rizingblare",
+  user: "postgres",
   host: "127.0.0.1", // TODO: 특정 IP주소 명시 옵션 설정
   database: "project1", // 개인 로컬 DB 적용
   password: "1234", // 개인 로컬 DB 적용

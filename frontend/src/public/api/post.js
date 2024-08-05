@@ -31,14 +31,14 @@ export const registerTransaction = () => {
       return;
     }
 
-    if (newMonth.value && (newMonth.value < 1 || newMonth.value > 12)) {
-      newMonth.value = null;
+    if (newMonth.value && (newMonth.value < 0 || newMonth.value > 12)) {
+      newMonth.value = 1;
       alert("유효하지 않은 날짜 값입니다.");
       return;
     }
 
-    if (newDay.value && (newDay.value < 1 || newDay.value > 31)) {
-      newDay.value = null;
+    if (newDay.value && (newDay.value < 0 || newDay.value > 31)) {
+      newDay.value = 1;
       alert("유효하지 않은 날짜 값입니다.");
       return;
     }
@@ -74,7 +74,14 @@ export const registerTransaction = () => {
     console.log("요청 data: ", JSON.stringify(formData));
 
     // 유효성 검사
-    if (!formData.date || isNaN(formData.amount) || !formData.description) {
+    if (
+      !formData.date ||
+      isNaN(formData.amount) ||
+      !formData.description ||
+      newYear.value <= 0 ||
+      newMonth.value <= 0 ||
+      newDay.value <= 0
+    ) {
       alert("모든 필드를 올바르게 입력하세요.");
       return;
     }
